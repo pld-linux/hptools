@@ -1,0 +1,68 @@
+diff -Nur hptools_1.2.3.orig/Makefile hptools_1.2.3/Makefile
+--- hptools_1.2.3.orig/Makefile	Mon May 19 19:59:45 1997
++++ hptools_1.2.3/Makefile	Mon Apr  8 22:31:33 2002
+@@ -1,25 +1,27 @@
+ # Makefile to HPTools Version 1.2.3
+ # by Michael Janson
+ 
+-#DEVICE =' "/dev/lp0"'
+-DEVICE =' "/dev/lp1" '
++DEVICE =' "/dev/lp0"'
++#DEVICE =' "/dev/lp1" '
+ HPPATH = /usr/bin
+-MANPATH= /usr/man
++MANPATH= /usr/share/man
+ # HPPATH = /usr/local/bin
+ 
+ # Nothing to be changed after this line
+ 
+ hpset: hp.c
+ 
+-	gcc hp.c -o hpset -O3 -m486 -DDEVICE=$(DEVICE)
++	$(CC) hp.c -o hpset $(CFLAGS) -DDEVICE=$(DEVICE)
+ 
+ 
+ all: hpset
+ 
+ install: all
+ 	
+-	install hpset $(HPPATH)
+-	install hpset.1.gz $(MANPATH)/man1
++	install -d $(DESTDIR)$(HPPATH)
++	install -d $(DESTDIR)$(MANPATH)/man1
++	install hpset $(DESTDIR)$(HPPATH)
++	gzip -dc hpset.1.gz > $(DESTDIR)$(MANPATH)/man1/hpset.1
+ 
+ clean: 
+ 
+diff -Nur hptools_1.2.3.orig/hp.c hptools_1.2.3/hp.c
+--- hptools_1.2.3.orig/hp.c	Mon May  5 22:32:32 1997
++++ hptools_1.2.3/hp.c	Mon Apr  8 22:30:09 2002
+@@ -128,7 +128,8 @@
+ 	verbose = 1;
+ 	file_in = isatty(fileno(stdin));
+ 	if (file_in) fprintf(stderr, "hpset>");
+-	gets(t = line);
++	fgets(line, 255, stdin);
++	t = line;
+ 	while(!feof(stdin))
+ 	{
+ 		strtok(t," ");
+@@ -142,7 +143,7 @@
+ 		else
+ 			send(t);
+ 		fflush(device);
+-		while(t=strtok(NULL," "))
++		while((t=strtok(NULL," ")) != NULL)
+ 		{
+ 			if ( !strcmp(t, "help") ) 
+ 				help();
+@@ -156,7 +157,7 @@
+ 			fflush(device);
+ 		}
+ 		if (file_in) fprintf(stderr, "hpset>");
+-		gets(t=line);
++		fgets(t=line, 255, stdin);
+ 	}
+ 	fclose(device);
+ 	exit(0);
