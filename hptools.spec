@@ -6,6 +6,7 @@ Release:	1
 License:	freely distributable
 Group:		Applications/Printing
 Source0:	ftp://metalab.unc.edu/pub/Linux/system/printing/%{name}-%{version}.tar.gz
+# Source0-md5:	50fe26553a0309bd6ef06144c177c5c8
 Patch0:		%{name}-fix.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
