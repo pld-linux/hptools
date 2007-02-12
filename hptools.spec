@@ -1,5 +1,5 @@
 Summary:	HP Tools - utilities to setup HP printers
-Summary(pl):	HP Tools - narzêdzia do sterowania drukarkami HP
+Summary(pl.UTF-8):   HP Tools - narzÄ™dzia do sterowania drukarkami HP
 Name:		hptools
 Version:	1.2.3
 Release:	1
@@ -14,9 +14,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 hpset is used to send commands to a printer. These commands are
 synonyms for ESC Codes based on the PCL standard from Hewlett Packard.
 
-%description -l pl
-hpset s³u¿y do wysy³ania poleceñ do drukarki. Polecenia te s±
-synonimami kodów ESC bazuj±cych na standardzie PCL Hewletta Packarda.
+%description -l pl.UTF-8
+hpset sÅ‚uÅ¼y do wysyÅ‚ania poleceÅ„ do drukarki. Polecenia te sÄ…
+synonimami kodÃ³w ESC bazujÄ…cych na standardzie PCL Hewletta Packarda.
 
 %prep
 %setup -q -n %{name}_%{version}
