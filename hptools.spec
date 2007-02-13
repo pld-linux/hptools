@@ -1,5 +1,5 @@
 Summary:	HP Tools - utilities to setup HP printers
-Summary(pl.UTF-8):   HP Tools - narzędzia do sterowania drukarkami HP
+Summary(pl.UTF-8):	HP Tools - narzędzia do sterowania drukarkami HP
 Name:		hptools
 Version:	1.2.3
 Release:	1
