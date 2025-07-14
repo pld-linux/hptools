@@ -20,7 +20,7 @@ synonimami kodów ESC bazujących na standardzie PCL Hewletta Packarda.
 
 %prep
 %setup -q -n %{name}_%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} \
